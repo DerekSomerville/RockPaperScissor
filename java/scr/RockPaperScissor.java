@@ -8,6 +8,13 @@ class RockPaperScissor {
     private Input userInput;
     private Input computerInput;
     private Output userOutput;
+    private ErrorLevel errorLevel = ErrorLevel.WARNING;
+    private ErrorLog errorLog;
+    private String className = "RockPaperScissor";
+
+    public void setErrorLevel(ErrorLevel errorLevel) {
+        this.errorLevel = errorLevel;
+    }
 
     public void setUserInput(Input inputType){
         userInput = inputType;
@@ -26,7 +33,13 @@ class RockPaperScissor {
         userInput = new ConsoleInput();
         userOutput = new ConsoleOutput();
         computerInput = new RandInput();
+        errorLog = ErrorLog.getInstance();
 
+    }
+
+    private void writeError(String method, String message, ErrorLevel errorLevel){
+
+        errorLog.writeMessage(className,method, message,errorLevel, this.errorLevel);
     }
 
         static String generateRequest(String[] weapons){
@@ -47,6 +60,9 @@ class RockPaperScissor {
             userOutput.output(request);
 
             int userWeapon = userInput.getInputInt();
+            if (userWeapon > 23){
+                writeError("requestPlay","userWeapon greater than 3", ErrorLevel.ERROR );
+            }
 
             return userWeapon;
         }
