@@ -1,9 +1,11 @@
 from Input import Input
 
-class ConsoleInput(Input):
+class InputConsole(Input):
+
+    inputList = []
 
     def getInputString(self, request):
-        return input(request)
+        return inputList.pop()
 
     def getInputInt(self, request):
         return int(self.getInputString(request))
