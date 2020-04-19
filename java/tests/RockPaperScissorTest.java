@@ -1,8 +1,8 @@
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
 
 public class RockPaperScissorTest {
 
@@ -47,7 +47,7 @@ public class RockPaperScissorTest {
         computerInputs.add("0");
         ArrayList<String> userOutput = setUpTest(userInputs,computerInputs);
 
-        rock.run();
+        rock.playGame(weaponList);
         String result = userOutput.remove(1);
         assertEquals("Draw both selected Rock", result);
     }
