@@ -10,6 +10,7 @@ public class RockPaperScissorTest {
     TestOutput testOutput = new TestOutput();
     TestInput testInput = new TestInput();
     TestInput computerInput = new TestInput();
+    Config configFromStubb = new ConfigFromStubb();
 
 
     final String[] weaponList = {"Rock","Scissors","Paper"};
@@ -22,13 +23,8 @@ public class RockPaperScissorTest {
         rock.setUserOutput(testOutput);
         rock.setUserInput(testInput);
         rock.setComputerInput(computerInput);
+        rock.setConfig(configFromStubb);
         return testOutput.getTestOutputs();
-    }
-
-    @Test
-    public void testGenerateRequest() {
-        String result = rock.generateRequest(weaponList);
-        assertEquals("Please select 0 Rock 1 Scissors 2 Paper", result);
     }
 
 
@@ -36,6 +32,12 @@ public class RockPaperScissorTest {
     public void testDetermineWinner() {
         String result = rock.determineWinner(weaponList,0,0);
         assertEquals("Draw both selected Rock", result);
+    }
+
+    @Test
+    public void testGenerateGamesRequest() {
+        String result = rock.generateGamesListRequest();
+        assertEquals("Please select 0 - Rock Paper Scissors 1 - Star Wars", result);
     }
 
     @Test

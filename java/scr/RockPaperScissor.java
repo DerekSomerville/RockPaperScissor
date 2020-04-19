@@ -13,6 +13,7 @@ class RockPaperScissor {
     private ErrorLevel errorLevel = ErrorLevel.WARNING;
     private ErrorLog errorLog;
     private String className = "RockPaperScissor";
+    private List<String> property;
 
     public void setErrorLevel(ErrorLevel errorLevel) {
         this.errorLevel = errorLevel;
@@ -30,6 +31,11 @@ class RockPaperScissor {
         computerInput = inputType;
     }
 
+    public void setConfig(Config configType){
+        this.config = configType;
+    }
+
+
     RockPaperScissor(){
 
         userInput = new ConsoleInput();
@@ -37,6 +43,7 @@ class RockPaperScissor {
         computerInput = new RandInput();
         config = new ConfigFromFile();
         errorLog = ErrorLog.getInstance();
+        property = new ArrayList<String>();
 
     }
 
@@ -118,23 +125,53 @@ class RockPaperScissor {
 
     public void run(){
         //Final declares
-        List<String> listOfGames = config.getConfig();
-        String request = getGamesRequest(listOfGames);
+        this.property = config.getConfig();
+        String request = generateGamesListRequest();
+        List<String[]> weaponLists = getWeaponLists(this.property);
         this.userOutput.output(request);
         int userGame = this.userInput.getInputInt();
-        while (userGame < listOfGames.size())
+        while (userGame < this.property.size())
         {
-            String[] weaponlist = listOfGames.get(userGame).split(":")[1].split(",");
+            String[] weaponlist = weaponLists.get(userGame);
             playGame(weaponlist);
             this.userOutput.output(request);
             userGame = this.userInput.getInputInt();
         } ;
     }
 
+    public String generateGamesListRequest(){
+        List<String> listOfGames = getListOfGames();
+        String request = getGamesRequest(listOfGames);
+        return request;
+    }
+
+    public List<String[]> getWeaponLists(List<String> property){
+        List<String[]> weaponLists = new ArrayList<String[]>();
+        if (this.property.isEmpty()) {
+            this.property = config.getConfig();
+        }
+        for (int counter = 1; counter < property.size(); counter++){
+            weaponLists.add(property.get(counter).split(":")[1].split(","));
+        }
+        return weaponLists;
+    }
+
+    public List<String> getListOfGames(){
+        List<String> listOfGames = new ArrayList<String>();
+        if (this.property.isEmpty()) {
+            this.property = config.getConfig();
+        }
+        for (int counter = 1; counter < this.property.size(); counter++){
+            listOfGames.add(this.property.get(counter).split(":")[0]);
+        }
+        return listOfGames;
+    }
+
+
     private String getGamesRequest(List<String> listOfGames){
         String request = "Please select";
-        for (int counter = 1; counter < listOfGames.size(); counter++){
-            request += " " + String.valueOf(counter) + " - " + listOfGames.get(counter).split(":")[0];
+        for (int counter = 0; counter < listOfGames.size(); counter++){
+            request += " " + String.valueOf(counter) + " - " + listOfGames.get(counter);
         }
         return request;
     }
