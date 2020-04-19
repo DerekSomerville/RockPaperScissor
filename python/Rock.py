@@ -1,12 +1,14 @@
 from random import randint
-
+from Input import ConsoleInput
 
 class RockPaperScissors:
 
-    def __init__():
-        this.userInput = ConsoleInput()
+    userInput = ConsoleInput()
+
+    def __init__(self):
+        self.userInput = ConsoleInput()
         
-    def determineWinner(player,computer):
+    def determineWinner(self,player,computer):
         if player == computer:
             result = "Draw"
         elif (player + 1)%3 == computer:
@@ -15,37 +17,40 @@ class RockPaperScissors:
             result = "Computer Wins"
         return result
 
-    def getUserChoice(weapons):
+    def getUserChoice(self,weapons):
         for counter in range(len(weapons)):
             print("Select " + str(counter) + " for " + weapons[counter])
-        player = this.userInput.getInputInt("Input one of the three options ")
+        player = self.userInput.getInputInt("Input one of the three options ")
         if player in [0,1,2]:
             print("You selected " + weapons[player])
         return player
 
-    def getComputerChoice(weapons):
+    def getComputerChoice(self, weapons):
         chosen = randint(0, len(weapons)-1)
         print("Computer chose " + weapons[chosen])
         return chosen
 
-    def getGame():
+    def getGame(self):
         starWars = ["Darth Vadar", "Emperor", "Luke Skywalker"]
         rockPaper = ["Paper", "Rock", "Scissors"]
-        game = this.userInput.getInputString("Please select Star Wars or Rock,Paper Scissors")
+        game = self.userInput.getInputString("Please select Star Wars or Rock,Paper Scissors")
         if game[0] == "S":
             weapon = starWars
         else:
             weapon = rockPaper
-
         return weapon
 
-    def play():
-        weapon = getGame()
-        player = getUserChoice(weapon)
+    def play(self):
+        weapon = self.getGame()
+        player = self.getUserChoice(weapon)
         while player in [0,1,2]:
-            computer = getComputerChoice(weapon)
-            result = determineWinner(player,computer)
+            computer = self.getComputerChoice(weapon)
+            result = self.determineWinner(player,computer)
             print(result)
-            player = getUserChoice(weapon)
+            player = self.getUserChoice(weapon)
 
-RockPaperScissors.play()
+def main():
+    RockPaperScissors.play()
+
+rock = RockPaperScissors()
+rock.play()
