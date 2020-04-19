@@ -1,6 +1,5 @@
 <component name="libraryTable">
-  <library name="org.junit.jupiter:junit-jupiter:5.6.0-M1" type="repository">
-    <properties maven-id="org.junit.jupiter:junit-jupiter:5.6.0-M1" />
+  <library name="org.junit.jupiter:junit-jupiter:5.6.0-M1">
     <CLASSES>
       <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter/5.6.0-M1/junit-jupiter-5.6.0-M1.jar!/" />
       <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-api/5.6.0-M1/junit-jupiter-api-5.6.0-M1.jar!/" />
@@ -11,7 +10,6 @@
       <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-engine/5.6.0-M1/junit-jupiter-engine-5.6.0-M1.jar!/" />
       <root url="jar://$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-engine/1.6.0-M1/junit-platform-engine-1.6.0-M1.jar!/" />
     </CLASSES>
-    <JAVADOC />
     <SOURCES />
   </library>
 </component>

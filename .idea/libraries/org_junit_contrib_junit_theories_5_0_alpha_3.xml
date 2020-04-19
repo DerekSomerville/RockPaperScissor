@@ -1,6 +1,5 @@
 <component name="libraryTable">
-  <library name="org.junit.contrib:junit-theories:5.0-alpha-3" type="repository">
-    <properties maven-id="org.junit.contrib:junit-theories:5.0-alpha-3" />
+  <library name="org.junit.contrib:junit-theories:5.0-alpha-3">
     <CLASSES>
       <root url="jar://$MAVEN_REPOSITORY$/org/junit/contrib/junit-theories/5.0-alpha-3/junit-theories-5.0-alpha-3.jar!/" />
       <root url="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/" />
@@ -8,7 +7,6 @@
       <root url="jar://$MAVEN_REPOSITORY$/org/javaruntype/javaruntype/1.2/javaruntype-1.2.jar!/" />
       <root url="jar://$MAVEN_REPOSITORY$/org/antlr/antlr-runtime/3.1.2/antlr-runtime-3.1.2.jar!/" />
     </CLASSES>
-    <JAVADOC />
     <SOURCES />
   </library>
 </component>

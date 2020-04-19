@@ -58,7 +58,6 @@ class RockPaperScissors:
         weaponLists = []
         for counter in range(1,len(self.property)):
             weaponLists.append(self.property[counter].split(":")[1].split(","))
-        print(weaponLists)
         return weaponLists
 
     def getGamesRequest(self,listOfGames):
@@ -93,6 +92,5 @@ def main():
     rock = RockPaperScissors()
     rock.play()
 
-main()
 
 
