@@ -24,6 +24,11 @@ namespace Rock
             this.userOutput = userOutput;
         }
 
+        public void setConfig(Config config)
+        {
+            this.config = config;
+        }
+
         private string generateRequest(String[] weapons)
         {
             String request = "Please select";
