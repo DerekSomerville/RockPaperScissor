@@ -1,0 +1,4 @@
+C:\Users\Derek\Documents\GitHub\RockPaperScissor\csharp\TestRock\TestRock\obj\Debug\netcoreapp3.1\TestRock.csprojAssemblyReference.cache
+C:\Users\Derek\Documents\GitHub\RockPaperScissor\csharp\TestRock\TestRock\obj\Debug\netcoreapp3.1\TestRock.csproj.CoreCompileInputs.cache
+C:\Users\Derek\Documents\GitHub\RockPaperScissor\csharp\TestRock\TestRock\obj\Debug\netcoreapp3.1\TestRock.AssemblyInfoInputs.cache
+C:\Users\Derek\Documents\GitHub\RockPaperScissor\csharp\TestRock\TestRock\obj\Debug\netcoreapp3.1\TestRock.AssemblyInfo.cs

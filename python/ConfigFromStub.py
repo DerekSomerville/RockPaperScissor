@@ -1,6 +1,6 @@
 from Config import Config
 
-class ConfigFromStubb(Config):
+class ConfigFromStub(Config):
 
     def getConfig(self):
         propertyData = []

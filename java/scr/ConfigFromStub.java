@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConfigFromStubb implements Config{
+public class ConfigFromStub implements Config{
     public List<String> getConfig(){
         List<String> propertyData = new ArrayList<String>();
         propertyData.add("Name:First,Second,Third");

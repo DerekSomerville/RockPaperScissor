@@ -1,15 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Rock;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Rock.Tests
+
+namespace TestRock
 {
-    [TestClass()]
-    class TestRock
+    [TestClass]
+    public class TestRock
     {
-        [TestMethod()]
+        [TestMethod]
         public void testGenerateGamesRequest()
         {
             Rock rock = new Rock();

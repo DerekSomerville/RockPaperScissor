@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 
@@ -10,7 +12,7 @@ public class RockPaperScissorTest {
     TestOutput testOutput = new TestOutput();
     TestInput testInput = new TestInput();
     TestInput computerInput = new TestInput();
-    Config configFromStubb = new ConfigFromStubb();
+    Config configFromStub = new ConfigFromStub();
 
 
     final String[] weaponList = {"Rock","Scissors","Paper"};
@@ -23,7 +25,6 @@ public class RockPaperScissorTest {
         rock.setUserOutput(testOutput);
         rock.setUserInput(testInput);
         rock.setComputerInput(computerInput);
-        rock.setConfig(configFromStubb);
         return testOutput.getTestOutputs();
     }
 
@@ -35,7 +36,16 @@ public class RockPaperScissorTest {
     }
 
     @Test
-    public void testGenerateGamesRequest() {
+    public void testGenerateGamesRequestMock() {
+
+        ConfigFromFile mockConfigFromFile = mock(ConfigFromFile.class);
+        when(mockConfigFromFile.getConfig()).thenReturn(configFromStub.getConfig());
+        String result = rock.generateGamesListRequest();
+        assertEquals("Please select 0 - Rock Paper Scissors 1 - Star Wars", result);
+    }
+    @Test
+    public void testGenerateGamesRequestStub() {
+        rock.setConfig(configFromStub);
         String result = rock.generateGamesListRequest();
         assertEquals("Please select 0 - Rock Paper Scissors 1 - Star Wars", result);
     }
