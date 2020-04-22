@@ -6,8 +6,7 @@ import java.util.ArrayList;
 
 
 public class ConfigFromFile implements Config{
-    final String configPath = "C:/Users/Derek/Documents/GitHub/RockPaperScissor/java/Config/properties.cfg";
-    final String fileDelimiter = ",";
+    final String configPath = "C:/Users/Derek/Documents/GitHub/RockPaperScissor/resource/Config/properties.cfg";
     List<String> propertyData = new ArrayList<String>();
 
     private void populatePropertyData(){

@@ -2,11 +2,13 @@ from random import randint
 from InputConsole import InputConsole
 from OutputConsole import OutputConsole
 from ConfigFromFile import ConfigFromFile
+from InputRandom import InputRandom
 
 class RockPaperScissors:
 
     userInput = InputConsole()
     userOutput = OutputConsole()
+    computerInput = InputRandom()
     config = ConfigFromFile()
     property = []
 
@@ -15,6 +17,9 @@ class RockPaperScissors:
 
     def setUserInput(self,userInput):
         self.userInput = userInput
+
+    def setComputerInput(self,computerInput):
+        self.computerInput = computerInput
 
     def setUserOutput (self,userOutput):
         self.userOutput = userOutput
@@ -31,16 +36,21 @@ class RockPaperScissors:
             result = "Computer Wins"
         return result
 
-    def getUserChoice(self,weapons):
+    def getUserChoiceRequest(self,weapons):
+        request = "Select "
         for counter in range(len(weapons)):
-            self.userOutput.print("Select " + str(counter) + " for " + weapons[counter])
-        player = self.userInput.getInputInt("Input one of the three options ")
+            request += str(counter) + " for " + weapons[counter] + " "
+        return request
+
+    def getUserChoice(self,weapons):
+        request = self.getUserChoiceRequest(weapons)
+        player = self.userInput.getInputInt(request)
         if player in [0,1,2]:
             self.userOutput.print("You selected " + weapons[player])
         return player
 
     def getComputerChoice(self, weapons):
-        chosen = randint(0, len(weapons)-1)
+        chosen = self.computerInput.getInputInt("")
         self.userOutput.print("Computer chose " + weapons[chosen])
         return chosen
 
@@ -72,8 +82,6 @@ class RockPaperScissors:
         return request
 
     def getGame(self):
-        starWars = ["Darth Vadar", "Emperor", "Luke Skywalker"]
-        rockPaper = ["Paper", "Rock", "Scissors"]
         request = self.generateGamesListRequest()
         userGame = self.userInput.getInputInt(request)
         weaponsLists = self.getWeaponLists()
@@ -91,6 +99,8 @@ class RockPaperScissors:
 def main():
     rock = RockPaperScissors()
     rock.play()
+
+#main()
 
 
 

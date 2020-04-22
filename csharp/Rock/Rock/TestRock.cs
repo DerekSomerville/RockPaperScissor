@@ -17,5 +17,6 @@ namespace Rock.Tests
             string result = rock.generateGamesListRequest();
             Assert.AreEqual("Please select 0 - Rock Paper Scissors 1 - Star Wars", result);
         }
+ 
     }
 }
