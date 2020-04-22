@@ -5,9 +5,12 @@ class Input(ABC):
     @abstractmethod
     def getInputString(self, request):
         pass
-    @abstractmethod
+
     def getInputInt(self, request):
-        pass
+        response = self.getInputString(request)
+        while not str(response).isnumeric():
+            response = self.getInputString("Please enter an integer")
+        return int(response)
 
 
 

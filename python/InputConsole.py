@@ -1,9 +1,13 @@
 from Input import Input
+from WriteToFile import WriteToFile
 
 class InputConsole(Input):
 
-    def getInputString(self, request):
-        return input(request)
+    writeToFile = True
+    userInputWriteToFile = WriteToFile("userInputLog.csv")
 
-    def getInputInt(self, request):
-        return int(self.getInputString(request))
+    def getInputString(self, request):
+        userInput = input(request)
+        if self.writeToFile:
+            self.userInputWriteToFile.writeToFile(userInput)
+        return userInput

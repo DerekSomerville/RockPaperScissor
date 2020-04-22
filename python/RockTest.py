@@ -2,6 +2,7 @@ import Rock, unittest,ConfigFromStub,ConfigFromFile
 from unittest.mock import MagicMock
 from InputTest import InputTest
 from OutputTest import OutputTest
+from ReadFileToList import ReadFileToList
 
 class rockTests(unittest.TestCase):
 
@@ -57,6 +58,19 @@ class rockTests(unittest.TestCase):
         self.rock.play()
         result = userOutput.outputlist.pop(-1)
         self.assertEqual(result,"Draw")
+
+    def testReplay(self):
+        self.rock.setConfig(ConfigFromStub.ConfigFromStub())
+        fileToList = ReadFileToList()
+        self.rock.userInput = self.getUserInput(fileToList.getList("userInputLog.csv"))
+        self.rock.computerInput = self.getComputerInputs(fileToList.getList("computerInputLog.csv"))
+        fileOutput = fileToList.getList("userOutputLog.csv")
+        userOutput = OutputTest()
+        self.rock.userOutput = userOutput
+        self.rock.play()
+        print(userOutput.outputlist)
+        print(fileOutput)
+        self.assertEqual(userOutput.outputlist,fileOutput)
 
 def main():
     unittest.main()
