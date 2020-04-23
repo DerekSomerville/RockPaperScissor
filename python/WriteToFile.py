@@ -10,5 +10,5 @@ class WriteToFile:
 
     def writeToFile(self,logItem):
         if self.file == "":
-            self.file = open(self.filePath + self.fileName,"a")
+            self.file = open(self.filePath + self.fileName,"w")
         self.file.write(str(logItem) + "\n")

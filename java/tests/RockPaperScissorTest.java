@@ -40,6 +40,7 @@ public class RockPaperScissorTest {
 
         ConfigFromFile mockConfigFromFile = mock(ConfigFromFile.class);
         when(mockConfigFromFile.getConfig()).thenReturn(configFromStub.getConfig());
+        rock.setConfig(mockConfigFromFile);
         String result = rock.generateGamesListRequest();
         assertEquals("Please select 0 - Rock Paper Scissors 1 - Star Wars", result);
     }

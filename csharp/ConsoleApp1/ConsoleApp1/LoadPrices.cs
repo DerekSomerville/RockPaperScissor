@@ -117,6 +117,7 @@ namespace ConsoleApp1
             priceEntries = loadPrices.ScrapeToday();
             watch.Stop();
             Console.WriteLine($"Initial Test Setup Execution Time: {watch.ElapsedMilliseconds - lastWatchTime} ms");
+            Console.WriteLine($"Number of times faster: {initialWatchTime / (watch.ElapsedMilliseconds - lastWatchTime)}");
             lastWatchTime = watch.ElapsedMilliseconds;
             watch.Start();
             priceEntries = loadPrices.ScrapeToday();
