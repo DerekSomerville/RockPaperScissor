@@ -1,12 +1,13 @@
-import Rock, unittest,ConfigFromStub,ConfigFromFile
+import unittest,ConfigFromStub,ConfigFromFile
 from unittest.mock import MagicMock
 from InputTest import InputTest
 from OutputTest import OutputTest
 from ReadFileToList import ReadFileToList
+from RockPaperScissors import RockPaperScissors
 
-class rockTests(unittest.TestCase):
+class RockTest(unittest.TestCase):
 
-    rock = Rock.RockPaperScissors()
+    rock = RockPaperScissors()
 
     def test_determinWinnerRockRock(self):
         result = self.rock.determineWinner(0,0)
@@ -14,30 +15,19 @@ class rockTests(unittest.TestCase):
 
     def test_GenerateGamesRequestStub(self):
         self.rock.setConfig(ConfigFromStub.ConfigFromStub())
+        self.rock.property = []
         result = self.rock.generateGamesListRequest();
         self.assertEqual("Please select 0 - Rock Paper Scissors 1 - Star Wars", result)
 
-    def test_GenerateGamesRequestMock(self):
+    def test_getListOfGamesMock(self):
         propertyData = []
         propertyData.append("Name,First,Second,Third")
         propertyData.append("Rock Paper Scissors:Rock,Scissors,Paper")
-        propertyData.append("Star Wars:Darth Vadar,Emperor,Luke Skywalker")
+        propertyData.append("Star War:Darth Vadar,Emperor,Luke Skywalker")
         self.rock.config.getConfig = MagicMock(return_value=propertyData)
-        result = self.rock.generateGamesListRequest();
-        print(result)
-        self.assertEqual("Please select 0 - Rock Paper Scissors 1 - Star Wars", result)
-
-    def test_GenerateGamesRequestMock(self):
-        propertyData = []
-        propertyData.append("Name,First,Second,Third")
-        propertyData.append("Rock Paper Scissors:Rock,Scissors,Paper")
-        propertyData.append("Star Wars:Darth Vadar,Emperor,Luke Skywalker")
-        config = ConfigFromFile.ConfigFromFile()
-        config.getConfig = MagicMock(return_value=propertyData)
-        self.rock.setConfig(config)
-        result = self.rock.generateGamesListRequest();
-        print(result)
-        self.assertEqual("Please select 0 - Rock Paper Scissors 1 - Star Wars", result)
+        self.rock.property = []
+        result = self.rock.getListOfGames();
+        self.assertEqual(['Rock Paper Scissors', 'Star War'], result)
 
     def getUserInput(self,inputs):
         userInput = InputTest()
@@ -68,9 +58,27 @@ class rockTests(unittest.TestCase):
         userOutput = OutputTest()
         self.rock.userOutput = userOutput
         self.rock.play()
-        print(userOutput.outputlist)
-        print(fileOutput)
         self.assertEqual(userOutput.outputlist,fileOutput)
+
+    def testPropertyRockPaperScissior(self):
+        config = ConfigFromFile.ConfigFromFile()
+        self.rock.property = []
+        propertyData = config.getConfig()
+        self.assertEqual(propertyData[1] ,"Rock Paper Scissors:Rock,Scissors,Paper")
+
+    def testPropertyMoreThanOne(self):
+        config = ConfigFromFile.ConfigFromFile()
+        propertyData = config.getConfig()
+        self.assertTrue(len(propertyData) >= 1)
+
+    def testAtLeastOneGame(self):
+        self.assertTrue(len(self.rock.getListOfGames()) >= 1)
+
+    def testAtLeastOneWeaponList(self):
+        self.assertTrue(len(self.rock.getWeaponLists()) >= 1)
+
+    def testFirstWeaponListHasThreeWeapons(self):
+        self.assertTrue(len(self.rock.getWeaponLists()) >= 1)
 
 def main():
     unittest.main()

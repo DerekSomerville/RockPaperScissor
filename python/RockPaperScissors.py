@@ -2,6 +2,7 @@ from random import randint
 from InputConsole import InputConsole
 from OutputConsole import OutputConsole
 from ConfigFromFile import ConfigFromFile
+from ConfigFromStub import ConfigFromStub
 from InputRandom import InputRandom
 
 class RockPaperScissors:
@@ -9,11 +10,11 @@ class RockPaperScissors:
     userInput = InputConsole()
     userOutput = OutputConsole()
     computerInput = InputRandom()
-    config = ConfigFromFile()
+    config = None
     property = []
 
-    def __init__(self):
-        self.userInput = InputConsole()
+    def __init__(self,config=ConfigFromFile()):
+        self.config = config
 
     def setUserInput(self,userInput):
         self.userInput = userInput
@@ -100,7 +101,9 @@ def main():
     rock = RockPaperScissors()
     rock.play()
 
-#main()
+if __name__ == "__main__":
+    main()
+
 
 
 
