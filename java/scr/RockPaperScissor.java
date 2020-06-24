@@ -176,8 +176,4 @@ class RockPaperScissor {
         return request;
     }
 
-    public static void main(String[ ] args) {
-        RockPaperScissor rockPaperScissor = new RockPaperScissor();
-        rockPaperScissor.run();
-    }
 }

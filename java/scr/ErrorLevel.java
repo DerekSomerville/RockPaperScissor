@@ -1,4 +1,5 @@
-public enum ErrorLevel {
+public enum
+ErrorLevel {
     ERROR( 300 ),
     WARNING(200),
     INFO(100);

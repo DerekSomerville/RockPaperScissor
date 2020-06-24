@@ -1,9 +1,9 @@
 from random import randint
-from InputConsole import InputConsole
-from OutputConsole import OutputConsole
-from ConfigFromFile import ConfigFromFile
-from ConfigFromStub import ConfigFromStub
-from InputRandom import InputRandom
+from python.src.Display.InputConsole import InputConsole
+from python.src.Display.OutputConsole import OutputConsole
+from python.src.DataSource.ConfigFromFile import ConfigFromFile
+from python.src.DataSource.ConfigFromStub import ConfigFromStub
+from python.src.Display.InputRandom import InputRandom
 
 class RockPaperScissors:
 
@@ -11,10 +11,11 @@ class RockPaperScissors:
     userOutput = OutputConsole()
     computerInput = InputRandom()
     config = None
-    property = []
+    property = None
 
     def __init__(self,config=ConfigFromFile()):
         self.config = config
+        self.property = config.getConfig()
 
     def setUserInput(self,userInput):
         self.userInput = userInput
@@ -27,6 +28,7 @@ class RockPaperScissors:
 
     def setConfig(self,config):
         self.config = config
+        self.property = config.getConfig()
 
     def determineWinner(self,player,computer):
         if player == computer:
@@ -55,17 +57,19 @@ class RockPaperScissors:
         self.userOutput.print("Computer chose " + weapons[chosen])
         return chosen
 
-    def getListOfGames(self):
+    def setProperty(self):
         if self.property == []:
             self.property = self.config.getConfig()
+
+    def getListOfGames(self):
+        self.setProperty()
         listOfGames = []
         for counter in range(1,len(self.property)):
             listOfGames.append(self.property[counter].split(":")[0])
         return listOfGames
 
     def getWeaponLists(self):
-        if self.property == []:
-            self.property = self.config.getConfig()
+        self.setProperty()
         weaponLists = []
         for counter in range(1,len(self.property)):
             weaponLists.append(self.property[counter].split(":")[1].split(","))

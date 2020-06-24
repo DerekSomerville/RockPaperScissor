@@ -1,5 +1,5 @@
-from Output import Output
-from WriteToFile import WriteToFile
+from python.src.Display.Output import Output
+from python.src.DataSource.WriteToFile import WriteToFile
 
 class OutputConsole(Output):
 

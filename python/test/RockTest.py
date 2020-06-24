@@ -1,9 +1,11 @@
-import unittest,ConfigFromStub,ConfigFromFile
+import unittest
+from python.src.DataSource.ConfigFromStub import ConfigFromStub
+from python.src.DataSource.ConfigFromFile import ConfigFromFile
 from unittest.mock import MagicMock
-from InputTest import InputTest
-from OutputTest import OutputTest
-from ReadFileToList import ReadFileToList
-from RockPaperScissors import RockPaperScissors
+from python.src.Display.InputTest import InputTest
+from python.src.Display.OutputTest import OutputTest
+from python.src.DataSource.ReadFileToList import ReadFileToList
+from python.src.Engine.RockPaperScissors import RockPaperScissors
 
 class RockTest(unittest.TestCase):
 
@@ -14,8 +16,7 @@ class RockTest(unittest.TestCase):
         self.assertEqual("Draw", result)
 
     def test_GenerateGamesRequestStub(self):
-        self.rock.setConfig(ConfigFromStub.ConfigFromStub())
-        self.rock.property = []
+        self.rock.setConfig(ConfigFromStub())
         result = self.rock.generateGamesListRequest();
         self.assertEqual("Please select 0 - Rock Paper Scissors 1 - Star Wars", result)
 
@@ -24,8 +25,8 @@ class RockTest(unittest.TestCase):
         propertyData.append("Name,First,Second,Third")
         propertyData.append("Rock Paper Scissors:Rock,Scissors,Paper")
         propertyData.append("Star War:Darth Vadar,Emperor,Luke Skywalker")
-        self.rock.config.getConfig = MagicMock(return_value=propertyData)
         self.rock.property = []
+        self.rock.config.getConfig = MagicMock(return_value=propertyData)
         result = self.rock.getListOfGames();
         self.assertEqual(['Rock Paper Scissors', 'Star War'], result)
 
@@ -40,7 +41,7 @@ class RockTest(unittest.TestCase):
         return computerInput
 
     def testRockVersusRock(self):
-        self.rock.setConfig(ConfigFromStub.ConfigFromStub())
+        self.rock.setConfig(ConfigFromStub())
         self.rock.userInput = self.getUserInput([0,0,4])
         self.rock.computerInput = self.getComputerInputs([0])
         userOutput = OutputTest()
@@ -50,7 +51,7 @@ class RockTest(unittest.TestCase):
         self.assertEqual(result,"Draw")
 
     def testReplay(self):
-        self.rock.setConfig(ConfigFromStub.ConfigFromStub())
+        self.rock.setConfig(ConfigFromFile())
         fileToList = ReadFileToList()
         self.rock.userInput = self.getUserInput(fileToList.getList("userInputLog.csv"))
         self.rock.computerInput = self.getComputerInputs(fileToList.getList("computerInputLog.csv"))
@@ -61,13 +62,11 @@ class RockTest(unittest.TestCase):
         self.assertEqual(userOutput.outputlist,fileOutput)
 
     def testPropertyRockPaperScissior(self):
-        config = ConfigFromFile.ConfigFromFile()
-        self.rock.property = []
-        propertyData = config.getConfig()
-        self.assertEqual(propertyData[1] ,"Rock Paper Scissors:Rock,Scissors,Paper")
+        self.rock.setConfig(ConfigFromFile())
+        self.assertEqual(self.rock.property[1] ,"Rock Paper Scissors:Rock,Scissors,Paper")
 
     def testPropertyMoreThanOne(self):
-        config = ConfigFromFile.ConfigFromFile()
+        config = ConfigFromFile()
         propertyData = config.getConfig()
         self.assertTrue(len(propertyData) >= 1)
 

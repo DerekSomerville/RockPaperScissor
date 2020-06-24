@@ -1,4 +1,4 @@
-from Input import Input
+from python.src.Display.Input import Input
 
 class InputTest(Input):
 

@@ -1,4 +1,4 @@
-from Config import Config
+from python.src.DataSource.Config import Config
 
 class ConfigFromFile(Config):
 
