@@ -169,7 +169,7 @@ namespace Rock
         public string[] getConfig()
         {
 
-            string configPath = "C:/Users/Derek/Documents/GitHub/RockPaperScissor/java/Config/properties.cfg";
+            string configPath = "C:/Users/Derek/Documents/GitHub/RockPaperScissor/resource/Config/properties.cfg";
 
             string[] propertyData = File.ReadAllLines(configPath);
 
