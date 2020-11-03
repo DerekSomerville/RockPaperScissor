@@ -1,7 +1,7 @@
 class ReadFileToList:
 
 
-    filePath = "C:/Users/Derek/Documents/GitHub/RockPaperScissor/resource/log/"
+    filePath = "../../../resource/log/"
 
     def getFileRows(self,fileName):
         file = open(self.filePath + fileName, "r")
