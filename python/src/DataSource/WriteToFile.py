@@ -1,7 +1,7 @@
 class WriteToFile:
     # Here will be the instance stored.
     file = ""
-    filePath = "C:/Users/Derek/Documents/GitHub/RockPaperScissor/resource/log/"
+    filePath = "../../../resource/log/"
     fileName = "inputLog.csv"
 
     def __init__(self,fileName):
