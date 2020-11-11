@@ -1,0 +1,2 @@
+class RockConstants:
+    filePrefix = "../../../resource/"

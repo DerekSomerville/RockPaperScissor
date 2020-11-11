@@ -1,7 +1,7 @@
+from python.src.DataSource.RockConstants import RockConstants
 class ReadFileToList:
 
-
-    filePath = "../../../resource/log/"
+    filePath = RockConstants.filePrefix + "log/"
 
     def getFileRows(self,fileName):
         file = open(self.filePath + fileName, "r")
