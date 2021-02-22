@@ -7,6 +7,7 @@ public class ErrorLog {
     private ErrorLevel errorLevel = ErrorLevel.ERROR;
     private int fileNumber = 0;
     private int fileLineCounter = 0;
+    private boolean consoleOutput = false;
 
     final private int maxLineCount = 10;
 
@@ -22,6 +23,10 @@ public class ErrorLog {
     private void setFileName(){
         fileNumber ++;
         fileName = filePreFix + fileNumber;
+    }
+
+    public void setConsoleOutput(boolean consoleOutput) {
+        this.consoleOutput = consoleOutput;
     }
 
     private boolean isSufficientErrorLevel(ErrorLevel messageErrorLevel, ErrorLevel classErrorLevel){
@@ -48,6 +53,11 @@ public class ErrorLog {
             }
             catch (Exception exception) {
                 System.out.println("Failure to write to " + fileName);
+            }
+            finally{
+                if (this.consoleOutput) {
+                    System.out.println("Class Name: " + className + " Method: " + method + " Message: " + message);
+                }
             }
             fileLineCounter ++;
         }
