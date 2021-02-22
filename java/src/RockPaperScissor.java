@@ -70,7 +70,7 @@ class RockPaperScissor {
         userOutput.output(request);
 
         int userWeapon = userInput.getInputInt();
-        if (userWeapon > 23){
+        if (userWeapon > 3){
             writeError("requestPlay","userWeapon greater than 3", ErrorLevel.ERROR );
         }
 
