@@ -59,6 +59,7 @@ class RockTest(unittest.TestCase):
         userOutput = OutputTest()
         self.rock.userOutput = userOutput
         self.rock.play()
+        print(userOutput.outputlist)
         self.assertEqual(userOutput.outputlist,fileOutput)
 
     def testPropertyRockPaperScissior(self):
